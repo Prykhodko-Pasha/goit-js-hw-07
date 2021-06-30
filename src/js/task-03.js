@@ -18,3 +18,6 @@ const galleryListEl = document.querySelector("#gallery");
 galleryListEl.innerHTML = images
   .map(({ url, alt }) => `<li><img src="${url}" alt="${alt}"></li>`)
   .join("");
+
+const navOneEl = document.childNodes;
+console.log(document);
