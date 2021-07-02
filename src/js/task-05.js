@@ -5,5 +5,8 @@ const refs = {
 
 refs.input.addEventListener(
   "input",
-  (event) => (refs.output.textContent = event.currentTarget.value)
+  (event) =>
+    (refs.output.textContent = event.currentTarget.value
+      ? event.currentTarget.value
+      : "незнакомец")
 );
