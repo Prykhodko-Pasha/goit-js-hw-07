@@ -23,19 +23,26 @@ const createRandomRGBcolor = () =>
   Math.floor(Math.random() * 256) +
   ")";
 
+let prevAmount = 0; //переменная для добавления размера дива, отталкиваясь от последнего созданного, при повторном нажатии на "создать"
+
 const createBoxes = () => {
   const divsArr = [];
-  const amount = refs.input.value;
+  const amount = parseInt(refs.input.value);
+
   if (amount > parseInt(refs.input.min) && amount <= parseInt(refs.input.max)) {
-    for (let i = 0; i < amount; i++) {
+    let i = prevAmount;
+
+    for (i; i < amount + prevAmount; i++) {
       divsArr.push(
         `<div style="background-color:${createRandomRGBcolor()}; width:${
           30 + i * 10
         }px; height:${30 + i * 10}px; margin:10px"></div>`
       );
     }
+
+    prevAmount = amount;
     const divsStr = divsArr.join("");
-    refs.output.insertAdjacentHTML("afterbegin", divsStr);
+    refs.output.insertAdjacentHTML("beforeend", divsStr);
   } else {
     refs.output.insertAdjacentHTML(
       "afterbegin",
@@ -52,4 +59,5 @@ refs.renderBtn.addEventListener("click", createBoxes);
 
 refs.destroyBtn.addEventListener("click", (event) => {
   refs.output.innerHTML = "";
+  prevAmount = 0;
 });

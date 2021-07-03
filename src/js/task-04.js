@@ -1,5 +1,5 @@
 const valueEl = document.querySelector("#value");
-let counterValue = parseFloat(valueEl.textContent);
+let counterValue = parseInt(valueEl.textContent);
 // console.log(counterValue);
 
 const decrement = () => {
