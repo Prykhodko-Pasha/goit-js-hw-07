@@ -28,10 +28,10 @@ let prevAmount = 0; //переменная для добавления разм�
 const createBoxes = () => {
   const divsArr = [];
   const amount = parseInt(refs.input.value);
-
+  //   console.log("amount:", amount);
   if (amount > parseInt(refs.input.min) && amount <= parseInt(refs.input.max)) {
     let i = prevAmount;
-
+    // console.log("i:", i);
     for (i; i < amount + prevAmount; i++) {
       divsArr.push(
         `<div style="background-color:${createRandomRGBcolor()}; width:${
@@ -40,7 +40,8 @@ const createBoxes = () => {
       );
     }
 
-    prevAmount = amount;
+    prevAmount = i;
+    // console.log("prevAmount:", prevAmount);
     const divsStr = divsArr.join("");
     refs.output.insertAdjacentHTML("beforeend", divsStr);
   } else {
@@ -59,5 +60,6 @@ refs.renderBtn.addEventListener("click", createBoxes);
 
 refs.destroyBtn.addEventListener("click", (event) => {
   refs.output.innerHTML = "";
+  refs.input.value = "";
   prevAmount = 0;
 });
